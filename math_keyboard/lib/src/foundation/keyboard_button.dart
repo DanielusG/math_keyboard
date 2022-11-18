@@ -151,6 +151,12 @@ final functionKeyboard = [
       value: r'\sin^{-1}(',
       asTex: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'\lim_{{\Box}\to{\Box}}{\Box}',
+      value: r'\lim_',
+      asTex: true,
+      args: [TeXArg.braces, TeXArg.parentheses],
+    ),
   ],
   [
     const BasicKeyboardButtonConfig(
