@@ -191,6 +191,24 @@ final functionKeyboard = [
       value: r'\cos^{-1}(',
       asTex: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'\int_{\Box}^{\Box}{\Box}',
+      value: r'\int',
+      asTex: true,
+      args: [
+        TeXArg.integral_a,
+        TeXArg.integral_b,
+        TeXArg.braces,
+      ],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\int{\Box}',
+      value: r'\int',
+      asTex: true,
+      args: [
+        TeXArg.braces,
+      ],
+    ),
   ],
   [
     const BasicKeyboardButtonConfig(
@@ -216,6 +234,7 @@ final functionKeyboard = [
       value: r'\tan^{-1}(',
       asTex: true,
     ),
+    
   ],
   [
     const PageButtonConfig(flex: 3),
