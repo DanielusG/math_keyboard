@@ -234,6 +234,17 @@ final functionKeyboard = [
       value: r'\tan^{-1}(',
       asTex: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'\infty',
+      value: r'\infty',
+      asTex: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\frac{d}{dx}(\Box)',
+      value: r'\frac{d}{dx}',
+      asTex: true,
+      args: [TeXArg.parentheses],
+    ),
     
   ],
   [
