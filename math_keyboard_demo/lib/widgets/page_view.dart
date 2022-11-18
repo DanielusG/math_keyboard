@@ -226,7 +226,7 @@ class _PrimaryPage extends StatefulWidget {
 
 class _PrimaryPageState extends State<_PrimaryPage> {
   late final _expressionController = MathFieldEditingController()
-    ..updateValue(Parser().parse('4.2 - (cos(x)/(x^3 - sin(x))) + e^(4^2)'));
+    ..updateValue(Parser().parse('2'));
   late final _numberController = MathFieldEditingController()
     ..updateValue(Parser().parse('42'));
 

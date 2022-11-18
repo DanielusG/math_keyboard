@@ -148,6 +148,10 @@ class TeXFunction extends TeX {
         return '{';
       case TeXArg.brackets:
         return '[';
+      case TeXArg.integral_a:
+        return '_{';
+      case TeXArg.integral_b:
+        return '^{';
       default:
         return '(';
     }
@@ -160,6 +164,10 @@ class TeXFunction extends TeX {
         return '}';
       case TeXArg.brackets:
         return ']';
+      case TeXArg.integral_a:
+        return '}';
+      case TeXArg.integral_b:
+        return '}';
       default:
         return ')';
     }
@@ -246,4 +254,7 @@ enum TeXArg {
   /// for functions like sin, cos, tan, etc. as well, so the user doesn't have
   /// to close the parentheses manually.
   parentheses,
+
+  integral_a,
+  integral_b,
 }
