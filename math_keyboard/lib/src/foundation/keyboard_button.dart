@@ -152,10 +152,18 @@ final functionKeyboard = [
       asTex: true,
     ),
     const BasicKeyboardButtonConfig(
-      label: r'\lim_{{\Box}\to{\Box}}{\Box}',
+      label: r'\lim_{\Box}{\Box}', // TODO: add automatic \to two nodes
       value: r'\lim_',
       asTex: true,
-      args: [TeXArg.braces, TeXArg.parentheses],
+      args: [
+        TeXArg.braces,
+        TeXArg.braces,
+      ],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\to',
+      value: r'\to',
+      asTex: true,
     ),
   ],
   [
