@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:math_keyboard/src/custom_key_icons/custom_key_icons.dart';
@@ -99,7 +100,7 @@ class MathKeyboard extends StatelessWidget {
                       child: Center(
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(
-                            maxWidth: 5e2,
+                            //maxWidth: 5e2,
                           ),
                           child: Column(
                             children: [
@@ -309,67 +310,71 @@ class _Buttons extends StatelessWidget {
         builder: (context, child) {
           final layout =
               controller.secondPage ? page2! : page1 ?? numberKeyboard;
-          return Column(
-            children: [
-              for (final row in layout)
-                SizedBox(
-                  height: 56,
-                  child: Row(
-                    children: [
-                      for (final config in row)
-                        if (config is BasicKeyboardButtonConfig)
-                          _BasicButton(
-                            flex: config.flex,
-                            label: config.label,
-                            onTap: config.args != null
-                                ? () => controller.addFunction(
-                                      config.value,
-                                      config.args!,
-                                    )
-                                : () => controller.addLeaf(config.value),
-                            asTex: config.asTex,
-                            highlightLevel: config.highlighted ? 1 : 0,
-                          )
-                        else if (config is DeleteButtonConfig)
-                          _NavigationButton(
-                            flex: config.flex,
-                            icon: Icons.backspace,
-                            iconSize: 22,
-                            onTap: () => controller.goBack(deleteMode: true),
-                          )
-                        else if (config is PageButtonConfig)
-                          _BasicButton(
-                            flex: config.flex,
-                            icon: controller.secondPage
-                                ? null
-                                : CustomKeyIcons.key_symbols,
-                            label: controller.secondPage ? '123' : null,
-                            onTap: controller.togglePage,
-                            highlightLevel: 1,
-                          )
-                        else if (config is PreviousButtonConfig)
-                          _NavigationButton(
-                            flex: config.flex,
-                            icon: Icons.chevron_left_rounded,
-                            onTap: controller.goBack,
-                          )
-                        else if (config is NextButtonConfig)
-                          _NavigationButton(
-                            flex: config.flex,
-                            icon: Icons.chevron_right_rounded,
-                            onTap: controller.goNext,
-                          )
-                        else if (config is SubmitButtonConfig)
-                          _BasicButton(
-                            flex: config.flex,
-                            icon: Icons.keyboard_return,
-                            onTap: onSubmit,
-                            highlightLevel: 2,
-                          ),
-                    ],
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Column(
+              children: [
+                for (final row in layout)
+                  SizedBox(
+                    height: 56,
+                    child: Row(
+                      children: [
+                        for (final config in row)
+                          if (config is BasicKeyboardButtonConfig)
+                            _BasicButton(
+                              width: config.width,
+                              flex: config.flex,
+                              label: config.label,
+                              onTap: config.args != null
+                                  ? () => controller.addFunction(
+                                        config.value,
+                                        config.args!,
+                                      )
+                                  : () => controller.addLeaf(config.value),
+                              asTex: config.asTex,
+                              highlightLevel: config.highlighted ? 1 : 0,
+                            )
+                          else if (config is DeleteButtonConfig)
+                            _NavigationButton(
+                              flex: config.flex,
+                              icon: Icons.backspace,
+                              iconSize: 22,
+                              onTap: () => controller.goBack(deleteMode: true),
+                            )
+                          else if (config is PageButtonConfig)
+                            _BasicButton(
+                              flex: config.flex,
+                              icon: controller.secondPage
+                                  ? null
+                                  : CustomKeyIcons.key_symbols,
+                              label: controller.secondPage ? '123' : null,
+                              onTap: controller.togglePage,
+                              highlightLevel: 1,
+                            )
+                          else if (config is PreviousButtonConfig)
+                            _NavigationButton(
+                              flex: config.flex,
+                              icon: Icons.chevron_left_rounded,
+                              onTap: controller.goBack,
+                            )
+                          else if (config is NextButtonConfig)
+                            _NavigationButton(
+                              flex: config.flex,
+                              icon: Icons.chevron_right_rounded,
+                              onTap: controller.goNext,
+                            )
+                          else if (config is SubmitButtonConfig)
+                            _BasicButton(
+                              flex: config.flex,
+                              icon: Icons.keyboard_return,
+                              onTap: onSubmit,
+                              highlightLevel: 2,
+                            ),
+                      ],
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           );
         },
       ),
@@ -380,15 +385,16 @@ class _Buttons extends StatelessWidget {
 /// Widget displaying a single keyboard button.
 class _BasicButton extends StatelessWidget {
   /// Constructs a [_BasicButton].
-  const _BasicButton({
-    Key? key,
-    required this.flex,
-    this.label,
-    this.icon,
-    this.onTap,
-    this.asTex = false,
-    this.highlightLevel = 0,
-  })  : assert(label != null || icon != null),
+  const _BasicButton(
+      {Key? key,
+      required this.flex,
+      this.label,
+      this.icon,
+      this.onTap,
+      this.asTex = false,
+      this.highlightLevel = 0,
+      this.width})
+      : assert(label != null || icon != null),
         super(key: key);
 
   /// The flexible flex value.
@@ -408,7 +414,7 @@ class _BasicButton extends StatelessWidget {
 
   /// Whether this button should be highlighted.
   final int highlightLevel;
-
+  final double? width;
   @override
   Widget build(BuildContext context) {
     Widget result;
@@ -452,8 +458,9 @@ class _BasicButton extends StatelessWidget {
       child: result,
     );
 
-    return Expanded(
-      flex: flex ?? 2,
+    return SizedBox(
+      //flex: flex ?? 2,
+      width: width ?? 70,
       child: result,
     );
   }
@@ -468,6 +475,7 @@ class _NavigationButton extends StatelessWidget {
     this.icon,
     this.iconSize = 36,
     this.onTap,
+    this.width
   }) : super(key: key);
 
   /// The flexible flex value.
@@ -481,11 +489,12 @@ class _NavigationButton extends StatelessWidget {
 
   /// Function used when user holds the button down.
   final VoidCallback? onTap;
-
+  final double? width;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: flex ?? 2,
+    return SizedBox(
+      //flex: flex ?? 2,
+      width: width ?? 70,
       child: KeyboardButton(
         onTap: onTap,
         onHold: onTap,

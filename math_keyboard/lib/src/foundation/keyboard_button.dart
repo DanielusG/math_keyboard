@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:math_keyboard/src/foundation/node.dart';
 
 /// Class representing a button configuration.
@@ -27,15 +28,16 @@ abstract class KeyboardButtonConfig {
 /// Class representing a button configuration for a [FunctionButton].
 class BasicKeyboardButtonConfig extends KeyboardButtonConfig {
   /// Constructs a [KeyboardButtonConfig].
-  const BasicKeyboardButtonConfig({
-    required this.label,
-    required this.value,
-    this.args,
-    this.asTex = false,
-    this.highlighted = false,
-    List<String> keyboardCharacters = const [],
-    int? flex,
-  }) : super(
+  const BasicKeyboardButtonConfig(
+      {required this.label,
+      required this.value,
+      this.args,
+      this.asTex = false,
+      this.highlighted = false,
+      List<String> keyboardCharacters = const [],
+      int? flex,
+      this.width})
+      : super(
           flex: flex,
           keyboardCharacters: keyboardCharacters,
         );
@@ -54,6 +56,9 @@ class BasicKeyboardButtonConfig extends KeyboardButtonConfig {
 
   /// The highlight level of this button.
   final bool highlighted;
+
+  /// The width of the button, for large operators
+  final double? width;
 }
 
 /// Class representing a button configuration of the Delete Button.
@@ -141,18 +146,29 @@ final functionKeyboard = [
       ],
     ),
     const BasicKeyboardButtonConfig(
+      label: r'\Box_{\Box}',
+      value: '_',
+      args: [TeXArg.braces],
+      asTex: true,
+      keyboardCharacters: [
+        '_',
+      ],
+    ),
+    const BasicKeyboardButtonConfig(
       label: r'\sin',
       value: r'\sin(',
       asTex: true,
       keyboardCharacters: ['s'],
     ),
     const BasicKeyboardButtonConfig(
-      label: r'\sin^{-1}',
-      value: r'\sin^{-1}(',
+      label: r'\arcsin',
+      value: r'\arcsin(',
+      width: 77,
       asTex: true,
     ),
     const BasicKeyboardButtonConfig(
       label: r'\lim_{\Box}{\Box}', // TODO: add automatic \to two nodes
+      width: 90,
       value: r'\lim_',
       asTex: true,
       args: [
@@ -165,8 +181,15 @@ final functionKeyboard = [
       value: r'\to',
       asTex: true,
     ),
+    
   ],
   [
+    const BasicKeyboardButtonConfig(
+      label: r'f(\Box)',
+      value: r'f',
+      asTex: true,
+      args: [TeXArg.parentheses],
+    ),
     const BasicKeyboardButtonConfig(
       label: r'\sqrt{\Box}',
       value: r'\sqrt',
@@ -187,12 +210,14 @@ final functionKeyboard = [
       keyboardCharacters: ['c'],
     ),
     const BasicKeyboardButtonConfig(
-      label: r'\cos^{-1}',
-      value: r'\cos^{-1}(',
+      label: r'\arccos',
+      value: r'\arccos(',
+      width: 77,
       asTex: true,
     ),
     const BasicKeyboardButtonConfig(
       label: r'\int_{\Box}^{\Box}{\Box}',
+      width: 90,
       value: r'\int',
       asTex: true,
       args: [
@@ -214,6 +239,7 @@ final functionKeyboard = [
     const BasicKeyboardButtonConfig(
       label: r'\log_{\Box}(\Box)',
       value: r'\log_',
+      width: 100,
       asTex: true,
       args: [TeXArg.braces, TeXArg.parentheses],
     ),
@@ -230,8 +256,14 @@ final functionKeyboard = [
       keyboardCharacters: ['t'],
     ),
     const BasicKeyboardButtonConfig(
-      label: r'\tan^{-1}',
-      value: r'\tan^{-1}(',
+      label: r'\arctan',
+      value: r'\arctan(',
+      width: 77,
+      asTex: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\pm',
+      value: r'\pm',
       asTex: true,
     ),
     const BasicKeyboardButtonConfig(
@@ -242,10 +274,10 @@ final functionKeyboard = [
     const BasicKeyboardButtonConfig(
       label: r'\frac{d}{dx}(\Box)',
       value: r'\frac{d}{dx}',
+      width: 90,
       asTex: true,
       args: [TeXArg.parentheses],
     ),
-    
   ],
   [
     const PageButtonConfig(flex: 3),
@@ -286,6 +318,12 @@ final standardKeyboard = [
       args: [TeXArg.braces, TeXArg.braces],
       highlighted: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'<',
+      value: r'<',
+      asTex: true,
+      highlighted: true,
+    ),
   ],
   [
     _digitButtons[4],
@@ -298,13 +336,31 @@ final standardKeyboard = [
       highlighted: true,
     ),
     _subtractButton,
+    const BasicKeyboardButtonConfig(
+      label: r'\leq',
+      value: r'{\leq}',
+      asTex: true,
+      highlighted: true,
+    ),
   ],
   [
     _digitButtons[1],
     _digitButtons[2],
     _digitButtons[3],
-    _decimalButton,
+    const BasicKeyboardButtonConfig(
+      label: '=',
+      value: r'=',
+      keyboardCharacters: ['='],
+      highlighted: true,
+    ),
     DeleteButtonConfig(),
+    const BasicKeyboardButtonConfig(
+      label: r'>',
+      value: r'>',
+      asTex: true,
+      highlighted: true,
+    ),
+    
   ],
   [
     const PageButtonConfig(),
@@ -312,6 +368,12 @@ final standardKeyboard = [
     PreviousButtonConfig(),
     NextButtonConfig(),
     SubmitButtonConfig(),
+    const BasicKeyboardButtonConfig(
+      label: r'\geq',
+      value: r'{\geq}',
+      asTex: true,
+      highlighted: true,
+    ),
   ],
 ];
 
