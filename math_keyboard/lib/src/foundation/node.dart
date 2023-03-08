@@ -152,6 +152,8 @@ class TeXFunction extends TeX {
         return '_{';
       case TeXArg.integral_b:
         return '^{';
+      case TeXArg.absolute_value:
+        return '|';
       default:
         return '(';
     }
@@ -168,6 +170,8 @@ class TeXFunction extends TeX {
         return '}';
       case TeXArg.integral_b:
         return '}';
+      case TeXArg.absolute_value:
+        return '|';
       default:
         return ')';
     }
@@ -257,4 +261,5 @@ enum TeXArg {
 
   integral_a,
   integral_b,
+  absolute_value,
 }

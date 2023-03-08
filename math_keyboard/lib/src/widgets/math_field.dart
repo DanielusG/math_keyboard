@@ -632,7 +632,7 @@ class MathFieldEditingController extends ChangeNotifier {
   }
 
   /// Type of the Keyboard.
-  bool secondPage = false;
+  int pageN = 0;
 
   /// The root node of the expression.
   TeXNode root = TeXNode(null);
@@ -930,7 +930,8 @@ class MathFieldEditingController extends ChangeNotifier {
 
   /// Switches between Page 1 and 2.
   void togglePage() {
-    secondPage = !secondPage;
+    pageN = pageN + 1;
+    if(pageN > 2) pageN = 0;
     notifyListeners();
   }
 

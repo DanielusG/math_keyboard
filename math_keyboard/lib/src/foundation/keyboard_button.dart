@@ -121,6 +121,18 @@ const _subtractButton = BasicKeyboardButtonConfig(
 final functionKeyboard = [
   [
     const BasicKeyboardButtonConfig(
+      label: r"f'(\Box)",
+      value: r"f'",
+      asTex: true,
+      args: [TeXArg.parentheses],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r"g'(\Box)",
+      value: r"g'",
+      asTex: true,
+      args: [TeXArg.parentheses],
+    ),
+    const BasicKeyboardButtonConfig(
       label: r'\frac{\Box}{\Box}',
       value: r'\frac',
       args: [TeXArg.braces, TeXArg.braces],
@@ -158,7 +170,6 @@ final functionKeyboard = [
       label: r'\sin',
       value: r'\sin(',
       asTex: true,
-      keyboardCharacters: ['s'],
     ),
     const BasicKeyboardButtonConfig(
       label: r'\arcsin',
@@ -181,12 +192,17 @@ final functionKeyboard = [
       value: r'\to',
       asTex: true,
     ),
-    
   ],
   [
     const BasicKeyboardButtonConfig(
       label: r'f(\Box)',
       value: r'f',
+      asTex: true,
+      args: [TeXArg.parentheses],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'g(\Box)',
+      value: r'g',
       asTex: true,
       args: [TeXArg.parentheses],
     ),
@@ -207,7 +223,6 @@ final functionKeyboard = [
       label: r'\cos',
       value: r'\cos(',
       asTex: true,
-      keyboardCharacters: ['c'],
     ),
     const BasicKeyboardButtonConfig(
       label: r'\arccos',
@@ -231,6 +246,25 @@ final functionKeyboard = [
       value: r'\int',
       asTex: true,
       args: [
+        TeXArg.braces,
+      ],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'd{\Box}',
+      value: r'd',
+      asTex: true,
+      args: [
+        TeXArg.braces,
+      ],
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\sum_{\Box}^{\Box}{\Box}',
+      width: 90,
+      value: r'\sum',
+      asTex: true,
+      args: [
+        TeXArg.integral_a,
+        TeXArg.integral_b,
         TeXArg.braces,
       ],
     ),
@@ -262,6 +296,12 @@ final functionKeyboard = [
       asTex: true,
     ),
     const BasicKeyboardButtonConfig(
+      label: r'\cot',
+      value: r'\cot(',
+      width: 77,
+      asTex: true,
+    ),
+    const BasicKeyboardButtonConfig(
       label: r'\pm',
       value: r'\pm',
       asTex: true,
@@ -278,16 +318,25 @@ final functionKeyboard = [
       asTex: true,
       args: [TeXArg.parentheses],
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'|\Box|',
+      value: r'',
+      asTex: true,
+      args: [TeXArg.absolute_value],
+      keyboardCharacters: ['|'],
+    ),
   ],
   [
     const PageButtonConfig(flex: 3),
     const BasicKeyboardButtonConfig(
+      width: 30,
       label: '(',
       value: '(',
       highlighted: true,
       keyboardCharacters: ['('],
     ),
     const BasicKeyboardButtonConfig(
+      width: 30,
       label: ')',
       value: ')',
       highlighted: true,
@@ -324,6 +373,12 @@ final standardKeyboard = [
       asTex: true,
       highlighted: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'\geq',
+      value: r'{\geq}',
+      asTex: true,
+      highlighted: true,
+    ),
   ],
   [
     _digitButtons[4],
@@ -341,6 +396,13 @@ final standardKeyboard = [
       value: r'{\leq}',
       asTex: true,
       highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'[',
+      value: r'[',
+      asTex: true,
+      highlighted: true,
+      keyboardCharacters: ['['],
     ),
   ],
   [
@@ -360,7 +422,13 @@ final standardKeyboard = [
       asTex: true,
       highlighted: true,
     ),
-    
+    const BasicKeyboardButtonConfig(
+      label: r']',
+      value: r']',
+      asTex: true,
+      highlighted: true,
+      keyboardCharacters: [']'],
+    ),
   ],
   [
     const PageButtonConfig(),
@@ -368,12 +436,166 @@ final standardKeyboard = [
     PreviousButtonConfig(),
     NextButtonConfig(),
     SubmitButtonConfig(),
+  ],
+];
+final physicsKeyboard = [
+  [
+    _digitButtons[7],
+    _digitButtons[8],
+    _digitButtons[9],
     const BasicKeyboardButtonConfig(
-      label: r'\geq',
-      value: r'{\geq}',
+      label: '×',
+      value: r'\cdot',
+      keyboardCharacters: ['*'],
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: '÷',
+      value: r'\frac',
+      keyboardCharacters: ['/'],
+      args: [TeXArg.braces, TeXArg.braces],
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{kg}',
+      value: r'{\mathrm{kg}}',
       asTex: true,
       highlighted: true,
     ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{m}',
+      value: r'{\mathrm{m}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{s}',
+      value: r'{\mathrm{s}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{Hz}',
+      value: r'{\mathrm{Hz}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{W}',
+      value: r'{\mathrm{W}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{°C}',
+      value: r'{\mathrm{°C}}',
+      asTex: true,
+      highlighted: true,
+    ),
+  ],
+  [
+    _digitButtons[4],
+    _digitButtons[5],
+    _digitButtons[6],
+    const BasicKeyboardButtonConfig(
+      label: '+',
+      value: '+',
+      keyboardCharacters: ['+'],
+      highlighted: true,
+    ),
+    _subtractButton,
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{A}',
+      value: r'{\mathrm{A}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{K}',
+      value: r'{\mathrm{K}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{mol}',
+      value: r'{\mathrm{mol}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{C}',
+      value: r'{\mathrm{C}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{V}',
+      value: r'{\mathrm{V}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{°F}',
+      value: r'{\mathrm{°F}}',
+      asTex: true,
+      highlighted: true,
+    ),
+  ],
+  [
+    _digitButtons[1],
+    _digitButtons[2],
+    _digitButtons[3],
+    const BasicKeyboardButtonConfig(
+      label: '=',
+      value: r'=',
+      keyboardCharacters: ['='],
+      highlighted: true,
+    ),
+    DeleteButtonConfig(),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{cd}',
+      value: r'{\mathrm{cd}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{N}',
+      value: r'{\mathrm{N}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{J}',
+      value: r'{\mathrm{J}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\mathrm{Pa}',
+      value: r'{\mathrm{Pa}}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\Omega',
+      value: r'{\Omega}',
+      asTex: true,
+      highlighted: true,
+    ),
+    const BasicKeyboardButtonConfig(
+      label: r'\times\mathrm{10}^{\Box}',
+      value: r'{\times\mathrm{10}}^',
+      args: [TeXArg.braces],
+      asTex: true,
+      highlighted: true,
+    ),
+  ],
+  [
+    const PageButtonConfig(),
+    _digitButtons[0],
+    PreviousButtonConfig(),
+    NextButtonConfig(),
+    SubmitButtonConfig(),
   ],
 ];
 
