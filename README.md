@@ -7,6 +7,7 @@
 field (so-called "math field") and a custom-made fully integrated math keyboard in _Flutter only_ -
 no plugins, no web views.
 
+**In this fork this library has been expanded by adding a myriad of additional buttons and features**
 ## About math_keyboard
 
 The `math_keyboard` package provides a widget that behaves like a Flutter `TextField` with the same
@@ -24,12 +25,49 @@ of the mathematical expressions entered by the user. This is used by the
 (see the [`LICENSE`][license] file).
 
 ## Features & usage
-
-See the [package README][package readme] for features and usage information.
-
-You can also try the **demo app** or view the package on Pub →
-[![math_keyboard Flutter web demo][demo shield]][demo]
-[![math_keyboard on Pub][pub shield]][pub]
+In addition to the features already offered by this library (See the [package README][package readme])
+### Main math features
+I added lots of mathematical functions, viz:
+- It now has an extra screen dedicated to physics.
+- Added minor, major, equal, minor equal, major equal symbols.
+- Added square brackets
+- Added derivative of f
+- Added derivative of g
+- Added subscript
+- Added arcosine
+- Added limit
+- Added symbol to
+- Added function f
+- Added function g
+- Added arcocosine
+- Added definite integral
+- Added indefinite integral
+- Added derivative to be added in the integ
+- Added arcotangent 
+- Added cotangent 
+- Added plus-minus symbol
+- Added infinite
+- Added derivative
+- Added absolute value
+### Features of physics
+- Unit of measurement of weight (kg)
+- Unit of measurement of length (m)
+- Unit of measurement of time (s)
+- Unit of measurement of frequency (Hz)
+- Unit of measurement of power (W)
+- Unit of measurement of temperature (°C)
+- Unit of measurement of American temperature (°F)
+- Unit of measurement of electrical intensity (A)
+- Unit of measurement of temperature (K)
+- Unit of measurement of the amount of matter (mol)
+- Unit of measurement of electric charge (C)
+- Unit of measurement of electric potential (V)
+- Unit of measurement of luminous intensity (cd)
+- Unit of measurement of force (N)
+- Unit of measurement of energy (J)
+- Unit of measurement of pressure (Pa)
+- Unit of measurement of electrical resistance (Ohm)
+- Exponential notation in base 10
 
 ## Implementation
 
